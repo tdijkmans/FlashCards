@@ -9,18 +9,19 @@ class Student(models.Model):
 
 
 class Stack(models.Model):
+    title = models.CharField(max_length=200)
     subject = models.CharField(max_length=200)
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.subject
+        return self.title
 
 
 class Card(models.Model):
     question = models.CharField(max_length=200)
     answer = models.CharField(max_length=200)
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    subject = models.ForeignKey(Stack, on_delete=models.CASCADE)
+    stack = models.ForeignKey(Stack, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.question
