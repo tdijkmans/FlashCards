@@ -19,3 +19,9 @@ def new_card(request):
     else:
             form = CardForm()
     return render(request, 'make_card.html', {'cardform':form})
+
+
+def delete_card(request, card_id):
+    card_to_delete = Card.objects.get(id=card_id)
+    card_to_delete.delete()
+    return redirect('show_all')

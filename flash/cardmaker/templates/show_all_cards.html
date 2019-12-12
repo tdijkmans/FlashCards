@@ -1,32 +1,31 @@
-{% extends "cardmaker_base.html" %}
+{% extends "base.html" %}
 
-{% block card_block %}
+{% block content %}
 
 
       {% for card in list_of_cards %}
 
           <p></p>
 
-          <div class="container">
-            <div class="row">
-              <div class="col-sm">
-              </div>
-              <div class="col-sm">
-                <div class="card">
-                  <div class="card-header">
-                    {{ card.student }} - {{card.stack}}
-                  </div>
-                  <div class="card-body">
-                    <h5 class="card-title">{{ card.question }}</h5>
-                    <p class="card-text">{{ card.answer }}</p>
-                    <a href="#" class="btn btn-primary">Edit card</a>
+              <div class="container" >
+                <div class="row justify-content-center">
+                  <div class="col-4">
+                    <div class="card">
+                      <div class="card-header">
+                        {{ card.student }} - {{card.stack}} - {{card.stack.subject}}
+                      </div>
+                      <div class="card-body">
+                        <h5 class="card-title">{{ card.question }}</h5>
+                        <p class="card-text">{{ card.answer }}</p>
+                        <form action="/deleteCard/{{card.id}}/" method="post">
+                          {% csrf_token %}
+                          <input type="submit" class="btn btn-primary btn-sm" value="Delete card">
+                        </form>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="col-sm">
-              </div>
-            </div>
-          </div>
 
       {% endfor %}
 

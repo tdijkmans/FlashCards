@@ -19,4 +19,6 @@ from django.urls import path, include
 urlpatterns = [
     path('', include('cardmaker.urls')),
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('signup/', include('usermanager.urls'))
     ]

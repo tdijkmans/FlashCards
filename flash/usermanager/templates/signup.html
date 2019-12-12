@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="jumbotron">
+  <div class="row justify-content-center">
+    <div class="col-6">
+        <h2>Sign up here </h2>
+        <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit"class="btn btn-primary">Sign up</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
