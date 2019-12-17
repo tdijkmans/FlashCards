@@ -8,11 +8,11 @@ class StudentAdmin(admin.ModelAdmin):
 
 
 class StackAdmin(admin.ModelAdmin):
-    fields = ['title', 'subject', 'student']
+    fields = ['title', 'subject', 'creator']
 
 
 class CardAdmin(admin.ModelAdmin):
-    fields = ['question', 'answer', 'stack', 'student']
+    fields = ['question', 'answer', 'stack']
 
 
 
