@@ -5,14 +5,14 @@
 <div class="container">
 
   <div class="jumbotron">
-    <h1 class="display-3">{{stack.title}}</h1>
-    <p class="lead">By {{stack.creator}} in {{stack.subject}}</p>
+    <h1 class="display-3">{{deck.title}}</h1>
+    <p class="lead">By {{deck.creator}} in {{deck.subject}}</p>
     <hr class="my-4">
 
   <form method="POST">
      {% csrf_token %}
      {{ formset.as_p }}
-     <button type="submit" class="save btn btn-primary">Save stack</button>
+     <button type="submit" class="save btn btn-primary">Save deck</button>
      </form>
   </div>
 

@@ -1,4 +1,4 @@
-from cardmaker.models import Card, Stack, Student
+from cardmaker.models import Card, Deck
 from django.forms import ModelForm, Textarea, inlineformset_factory, TextInput
 from django.contrib.auth.models import User
 from django.views.generic.edit import CreateView, UpdateView
@@ -8,7 +8,7 @@ from django.views.generic.edit import CreateView, UpdateView
 class CardForm(ModelForm):
     class Meta:
         model = Card
-        fields = ('question', 'answer', 'stack')
+        fields = ('question', 'answer', 'deck')
         widgets = {'question':
                                 Textarea(attrs={
                                 'label':'hi!',
@@ -25,16 +25,18 @@ class CardForm(ModelForm):
                     }
 
 
-class StackForm(ModelForm):
+class DeckForm(ModelForm):
     class Meta:
-        model = Stack
+        model = Deck
         fields = ('title', 'subject')
         widgets = {'title':
                                 TextInput(attrs={
+                                'class': 'form-control',
                                 'placeholder': "Title",
                                 }),
                     'subject':
                                 TextInput(attrs={
+                                'class': 'form-control',
                                 'placeholder': "Subject e.g. biology",
                                 }),
                     }

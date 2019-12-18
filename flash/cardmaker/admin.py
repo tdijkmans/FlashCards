@@ -1,21 +1,16 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Student, Stack, Card
-
-class StudentAdmin(admin.ModelAdmin):
-    fields = ['full_name']
+from .models import Deck, Card
 
 
-class StackAdmin(admin.ModelAdmin):
+class DeckAdmin(admin.ModelAdmin):
     fields = ['title', 'subject', 'creator']
 
 
 class CardAdmin(admin.ModelAdmin):
-    fields = ['question', 'answer', 'stack']
+    fields = ['question', 'answer', 'deck']
 
 
-
-admin.site.register(Student, StudentAdmin)
-admin.site.register(Stack, StackAdmin)
+admin.site.register(Deck, DeckAdmin)
 admin.site.register(Card, CardAdmin)

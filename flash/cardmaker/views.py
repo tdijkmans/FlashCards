@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from cardmaker.models import Card, Stack, Student
-from cardmaker.forms import CardForm, StackForm
+from cardmaker.models import Card, Deck
+from cardmaker.forms import CardForm, DeckForm
 from django.shortcuts import redirect
 from django.forms import modelformset_factory, inlineformset_factory
 from django.views.generic.edit import CreateView
@@ -19,22 +19,21 @@ def delete_card(request, card_id):
     return redirect('all_cards')
 
 
-def show_all_stacks(request):
-    s_list = Stack.objects.all()
-    context = {'list_of_stacks': s_list}
-    return render(request, 'show_all_stacks.html', context)
+def show_all_decks(request):
+    d_list = Deck.objects.all()
+    context = {'list_of_decks': d_list}
+    return render(request, 'show_all_decks.html', context)
 
 
-def delete_stack(request, stack_id):
-    stack_to_delete = Stack.objects.get(id=stack_id)
-    stack_to_delete.delete()
-    return redirect('all_stacks')
+def delete_deck(request, stack_id):
+    deck_to_delete = Deck.objects.get(id=deck_id)
+    deck_to_delete.delete()
+    return redirect('all_decks')
 
 
-class StackCreate(CreateView):
-    form_class = StackForm
-    model=Stack
-    # fields = ['title', 'subject']
+class DeckCreate(CreateView):
+    form_class = DeckForm
+    model=Deck
 
     def form_valid(self, form):
         f = form.save(commit=False)
@@ -43,15 +42,15 @@ class StackCreate(CreateView):
         return super().form_valid(form)
 
 
-def create_cards(request, stack_id):
-    stack = Stack.objects.get(pk=stack_id)
-    CardFormSet = inlineformset_factory(Stack, Card, fields=('question','answer'))
+def create_cards(request, deck_id):
+    deck = Deck.objects.get(pk=stack_id)
+    CardFormSet = inlineformset_factory(Deck, Card, fields=('question','answer'))
 
     if request.method == 'POST':
-        formset = CardFormSet(request.POST, instance = stack)
+        formset = CardFormSet(request.POST, instance = deck)
         if formset.is_valid():
             formset.save()
-            return redirect('create_cards', stack_id)
+            return redirect('create_cards', deck_id)
 
     formset = CardFormSet(instance=stack)
-    return render(request, 'create_cards.html', {'formset':formset, 'stack':stack})
+    return render(request, 'create_cards.html', {'formset':formset, 'deck': deck})
