@@ -9,26 +9,23 @@ class CardForm(ModelForm):
     class Meta:
         model = Card
         fields = ('question', 'answer', 'deck')
-        widgets = {'question':
-                                Textarea(attrs={
-                                'label':'hi!',
-                                'cols':33,
-                                'rows':7,
-                                'placeholder': "Write your question or term here",
-                                'autofocus': True}),
-                    'answer':
-                                Textarea(attrs={
-                                'cols':33,
-                                'rows':7,
-                                'placeholder': "Write your answer or definition here",
-                                'autofocus': True}),
-                    }
+        # widgets = {'question':
+        #                         Textarea(attrs={
+        #                         'class':'form-control',
+        #                         'placeholder': "Write your question or term here",
+        #                         'autofocus': True}),
+        #             'answer':
+        #                         Textarea(attrs={
+        #                         'class':'form-control',
+        #                         'placeholder': "Write your answer or definition here",
+        #                         'autofocus': True}),
+        #             }
 
 
 class DeckForm(ModelForm):
     class Meta:
         model = Deck
-        fields = ('title', 'subject')
+        fields = ('title', 'subject', 'description')
         widgets = {'title':
                                 TextInput(attrs={
                                 'class': 'form-control',
@@ -37,6 +34,28 @@ class DeckForm(ModelForm):
                     'subject':
                                 TextInput(attrs={
                                 'class': 'form-control',
-                                'placeholder': "Subject e.g. biology",
+                                'placeholder': "Subject e.g. Biology",
+                                }),
+                    'description':
+                                Textarea(attrs={
+                                'class': 'form-control',
+                                'placeholder': "Description e.g. Molecular Biology of the Cell, chapter 5-7",
                                 }),
                     }
+
+
+CardFormSet = inlineformset_factory(
+                Deck, Card,
+                fields=('question','answer'),
+                can_delete=False,
+                extra=1,
+                widgets={
+                    'question': TextInput(attrs={"class":"form-control form-control-lg",
+                                                    "placeholder":"Question",}),
+                    'answer': TextInput(attrs={"class":"form-control",
+                                                    "placeholder":"Answer"}),
+
+
+                        }
+
+                )

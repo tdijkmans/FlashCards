@@ -1,33 +1,43 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 
+<p></p>
 
-      {% for deck in list_of_decks %}
+<div class="container">
 
-          <p></p>
+<div class="card-columns">
+  {% for deck in list_of_decks %}
+  <div class="card">
+    <img src="{% static "images/oak.jpg" %}" class="card-img-top" alt="...">
 
-              <div class="container" >
-                <div class="row justify-content-center">
-                  <div class="col-4">
-                    <div class="card">
-                      <div class="card-header">
-                        <a href="/deck/{{deck.id}}">{{ deck.title }}</a> - {{deck.subject}} - by {{deck.creator}}
-                      </div>
-                      <div class="card-body">
-                        <h5 class="card-title">{{ card.question }}</h5>
-                        <p class="card-text">{{ card.answer }}</p>
-                        <form action="/deck/delete/{{deck.id}}/" method="post">
-                          {% csrf_token %}
-                          <input type="submit" class="btn btn-primary btn-sm" value="Delete deck">
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+    <div class="card-body">
+      <h5 class="card-title">{{ deck.title }} <a href="/deck/{{deck.id}}" <span class="badge badge-primary">{{deck.card_set.all|length}}</a></span> </h5>
+      <p class="card-text">{{deck.description}}</p>
 
-      {% endfor %}
+      <form action="/deck/delete/{{deck.id}}/" method="post">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-outline-primary btn-sm" value="Delete">
+        <a class="btn btn-outline-primary btn-sm" href="/deck/{{deck.id}}" role="button">Edit</a>
+      </form>
 
+
+
+    </div>
+
+    <div class="card-footer">
+      <small class="text-muted"> by {{deck.creator}}</small>
+       ·
+      <small class="text-muted">{{ deck.subject }}</small>
+
+    </div>
+  </div>
+{% endfor %}
+</div>
+
+</div>
+
+<hr>
 
 {% endblock %}

@@ -5,7 +5,7 @@ from .models import Deck, Card
 
 
 class DeckAdmin(admin.ModelAdmin):
-    fields = ['title', 'subject', 'creator']
+    fields = ['title', 'subject', 'creator', 'description']
 
 
 class CardAdmin(admin.ModelAdmin):

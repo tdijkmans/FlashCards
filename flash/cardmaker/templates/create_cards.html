@@ -7,13 +7,28 @@
   <div class="jumbotron">
     <h1 class="display-3">{{deck.title}}</h1>
     <p class="lead">By {{deck.creator}} in {{deck.subject}}</p>
+    <p>{{deck.description}}</p>
     <hr class="my-4">
 
+
+
   <form method="POST">
+
      {% csrf_token %}
-     {{ formset.as_p }}
+     {{ formset.management_form }}
+
+    {% for form in formset %}
+      {% for field in form %}
+          {{ field.label_tag }} {{ field }}
+      {% endfor %}
+    {% endfor %}
+
+
+<br>
      <button type="submit" class="save btn btn-primary">Save deck</button>
+
      </form>
+
   </div>
 
 </div>

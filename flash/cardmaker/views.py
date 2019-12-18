@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from cardmaker.models import Card, Deck
-from cardmaker.forms import CardForm, DeckForm
+from cardmaker.forms import CardForm, DeckForm, CardFormSet
 from django.shortcuts import redirect
-from django.forms import modelformset_factory, inlineformset_factory
+
 from django.views.generic.edit import CreateView
 
 
@@ -25,7 +25,7 @@ def show_all_decks(request):
     return render(request, 'show_all_decks.html', context)
 
 
-def delete_deck(request, stack_id):
+def delete_deck(request, deck_id):
     deck_to_delete = Deck.objects.get(id=deck_id)
     deck_to_delete.delete()
     return redirect('all_decks')
@@ -43,8 +43,7 @@ class DeckCreate(CreateView):
 
 
 def create_cards(request, deck_id):
-    deck = Deck.objects.get(pk=stack_id)
-    CardFormSet = inlineformset_factory(Deck, Card, fields=('question','answer'))
+    deck = Deck.objects.get(pk=deck_id)
 
     if request.method == 'POST':
         formset = CardFormSet(request.POST, instance = deck)
@@ -52,5 +51,5 @@ def create_cards(request, deck_id):
             formset.save()
             return redirect('create_cards', deck_id)
 
-    formset = CardFormSet(instance=stack)
+    formset = CardFormSet(instance=deck)
     return render(request, 'create_cards.html', {'formset':formset, 'deck': deck})
