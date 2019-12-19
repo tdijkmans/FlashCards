@@ -53,3 +53,18 @@ def create_cards(request, deck_id):
 
     formset = CardFormSet(instance=deck)
     return render(request, 'create_cards.html', {'formset':formset, 'deck': deck})
+
+
+def show_deck(request, deck_id):
+    deck = Deck.objects.get(pk=deck_id)
+    c_list = Card.objects.filter(deck_id=deck)
+    context = {'list_of_cards' : c_list}
+
+    return render(request, 'show_deck.html', context)
+
+def review_deck(request, deck_id):
+    deck = Deck.objects.get(pk=deck_id)
+    c_list = Card.objects.filter(deck_id=deck)
+    context = {'list_of_cards' : c_list}
+
+    return render(request, 'review_deck.html', context)

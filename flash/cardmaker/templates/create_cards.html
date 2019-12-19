@@ -18,16 +18,15 @@
      {{ formset.management_form }}
 
     {% for form in formset %}
-      {% for field in form %}
-          {{ field.label_tag }} {{ field }}
-      {% endfor %}
+{{form.as_table}}
+      <br>
+      <hr>
     {% endfor %}
 
+    <br>
+    <button type="submit" class="save btn btn-primary">Save deck</button>
 
-<br>
-     <button type="submit" class="save btn btn-primary">Save deck</button>
-
-     </form>
+  </form>
 
   </div>
 

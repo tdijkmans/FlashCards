@@ -1,33 +1,43 @@
 {% extends "base.html" %}
+{% load static %}
+
 
 {% block content %}
 
+<p></p>
 
-      {% for card in list_of_cards %}
+<div class="container">
 
-          <p></p>
+<div class="card-columns">
+  {% for card in list_of_cards %}
+  <div class="card">
 
-              <div class="container" >
-                <div class="row justify-content-center">
-                  <div class="col-4">
-                    <div class="card">
-                      <div class="card-header">
-                        {{card.deck}} - {{card.deck.subject}} - by {{card.deck.creator}}
-                      </div>
-                      <div class="card-body">
-                        <h5 class="card-title">{{ card.question }}</h5>
-                        <p class="card-text">{{ card.answer }}</p>
-                        <form action="/card/delete/{{card.id}}/" method="post">
-                          {% csrf_token %}
-                          <input type="submit" class="btn btn-primary btn-sm" value="Delete card">
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+    <img src="{% static "images/FlashCardImage.svg" %}" class="card-img-top" alt="...">
 
-      {% endfor %}
+    <div class="card-body">
+      <h5 class="card-title">{{ card.question }} <a href="/deck/{{deck.id}}" <span class="badge badge-primary">{{deck.card_set.all|length}}</a></span> </h5>
+      <p class="card-text">{{card.answer}}</p>
 
+      <form action="/card/delete/{{card.id}}/" method="post">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-outline-primary btn-sm" value="Delete">
+        <a class="btn btn-outline-primary btn-sm" href="/deck/{{deck.id}}" role="button">Edit</a>
+      </form>
+    </div>
+
+    <div class="card-footer">
+      <small class="text-muted">
+        {{card.deck}} · {{card.deck.subject}} · {{card.deck.creator}}{{deck.creator}}
+      </small>
+
+    </div>
+
+  </div>
+{% endfor %}
+</div>
+
+</div>
+
+<hr>
 
 {% endblock %}

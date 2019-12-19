@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+<p></p>
+
+<div class="container">
+
+<div class="card-columns">
+  {% for card in list_of_cards %}
+  <div class="card">
+
+    <img src="{% static "images/FlashCardImage.svg" %}" class="card-img-top" alt="...">
+
+
+    <div class="card-body">
+      <h5 class="card-title">{{ card.question }}  </h5>
+      <p class="card-text">{{card.answer}}</p>
+    </div>
+
+    <div class="card-footer">
+      <small class="text-muted">
+          {{card.id}}
+        · {{card.deck}}
+        · {{card.deck.creator}}
+        · <a href="/card/edit/{{card.id}}">Edit</a>
+        · <a href="/card/delete/{{card.id}}/">Delete</a>
+      </small>
+
+    </div>
+
+  </div>
+{% endfor %}
+</div>
+
+</div>
+
+<hr>
+
+{% endblock %}

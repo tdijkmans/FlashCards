@@ -10,28 +10,25 @@
 <div class="card-columns">
   {% for deck in list_of_decks %}
   <div class="card">
-    <img src="{% static "images/oak.jpg" %}" class="card-img-top" alt="...">
+
+    <img src="{% static "images/FlashCardImageDeck.svg" %}" class="card-img-top" alt="...">
 
     <div class="card-body">
-      <h5 class="card-title">{{ deck.title }} <a href="/deck/{{deck.id}}" <span class="badge badge-primary">{{deck.card_set.all|length}}</a></span> </h5>
+      <h5 class="card-title">{{ deck.title }} <a href="/deck/show/{{deck.id}}" <span class="badge badge-primary">{{deck.card_set.all|length}}</a></span> </h5>
       <p class="card-text">{{deck.description}}</p>
 
-      <form action="/deck/delete/{{deck.id}}/" method="post">
-        {% csrf_token %}
-        <input type="submit" class="btn btn-outline-primary btn-sm" value="Delete">
-        <a class="btn btn-outline-primary btn-sm" href="/deck/{{deck.id}}" role="button">Edit</a>
-      </form>
-
-
-
+      <a class="btn btn-info btn-sm" href="/deck/review/{{deck.id}}" role="button">Review</a>
+      <a class="btn btn-success btn-sm" href="/deck/{{deck.id}}" role="button">Leitner</a>
     </div>
 
     <div class="card-footer">
-      <small class="text-muted"> by {{deck.creator}}</small>
-       ·
-      <small class="text-muted">{{ deck.subject }}</small>
-
+      <small class="text-muted"> by {{deck.creator}}
+        · {{ deck.subject }}
+        · <a href="/deck/{{deck.id}}">Edit</a>
+        · <a href="/deck/delete/{{deck.id}}/">Delete</a>
+      </small>
     </div>
+
   </div>
 {% endfor %}
 </div>
