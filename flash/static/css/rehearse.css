@@ -1,0 +1,13 @@
+.rehearse_card{
+    margin:auto;
+  }
+
+.card-title-question{
+    height: 120px;
+    color: red;
+  }
+
+.card-text-answer{
+    height: 120px;
+    color: green;
+  }
