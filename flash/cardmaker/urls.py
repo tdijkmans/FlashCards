@@ -13,9 +13,9 @@ urlpatterns = [
     path('deck/delete/<int:deck_id>/', views.delete_deck, name="delete_deck"),
     path('deck/create/', views.DeckCreate.as_view(), name='create_deck'),
     path('deck/<deck_id>/', views.create_cards, name='create_cards'),
-    path('deck/review/<deck_id>/', views.review_deck, name='review_deck'),
     path('deck/show/<int:deck_id>/', views.show_deck, name="show_deck"),
-    path('deck/rehearse/<int:deck_id>/', views.rehearse_deck, name="rehears_deck"),
+    path('deck/rehearse/<int:deck_id>/', views.rehearse_deck, name="rehearse_deck"),
+    path('deck/leitner/<int:deck_id>/', views.leitner_deck, name="leitner_deck")
 
 
 ]

@@ -63,16 +63,18 @@ def show_deck(request, deck_id):
     return render(request, 'show_deck.html', context)
 
 
-def review_deck(request, deck_id):
-    deck = Deck.objects.get(pk=deck_id)
-    c_list = Card.objects.filter(deck_id=deck)
-    context = {'list_of_cards' : c_list}
-    return render(request, 'review_deck.html', context)
-
-
+# rehearsing the deck means 'a slidehow of flashcards', flipping cards when
+# needed (showing question or answer side)
 def rehearse_deck(request, deck_id):
     deck = Deck.objects.get(pk=deck_id)
     c_list = Card.objects.filter(deck_id=deck)
     context = {'list_of_cards' : c_list}
 
     return render(request, 'rehearse_deck.html', context)
+
+def leitner_deck(request, deck_id):
+    deck = Deck.objects.get(pk=deck_id)
+    c_list = Card.objects.filter(deck_id=deck)
+    context = {'list_of_cards' : c_list}
+
+    return render(request, 'leitner_deck.html', context)

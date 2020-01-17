@@ -15,13 +15,13 @@
     <img src="{% static "images/FlashCardImage.svg" %}" class="card-img-top" alt="...">
 
     <div class="card-body">
-      <h5 class="card-title">{{ card.question }} <a href="/deck/{{deck.id}}" <span class="badge badge-primary">{{deck.card_set.all|length}}</a></span> </h5>
+      <h5 class="card-title">{{ card.question }} </h5>
       <p class="card-text">{{card.answer}}</p>
 
       <form action="/card/delete/{{card.id}}/" method="post">
         {% csrf_token %}
         <input type="submit" class="btn btn-outline-primary btn-sm" value="Delete">
-        <a class="btn btn-outline-primary btn-sm" href="/deck/{{deck.id}}" role="button">Edit</a>
+        <a class="btn btn-outline-primary btn-sm" href="/deck/{{card.deck.id}}" role="button">Edit</a>
       </form>
     </div>
 
