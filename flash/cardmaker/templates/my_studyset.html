@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+  {% block content %}
+
+    <div class="container">
+
+      <div class="jumbotron">
+        <h1 class="display-3">Study set of {{studyset.student}}</h1>
+        <p class="lead"></p>
+      </div>
+
+      <ul class="list-group">
+      {% for d in deck_list %}
+        <li class="list-group-item">{{d.deck.title}}
+          <a href="/studyset/remove/{{d.id}}/">Delete</a>
+
+        </li>
+      {% endfor %}
+      </ul>
+
+    </div>
+
+  {% endblock %}

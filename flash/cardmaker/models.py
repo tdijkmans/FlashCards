@@ -10,7 +10,6 @@ class Deck(models.Model):
     subject = models.CharField(max_length=200)
     description = models.TextField(max_length=500, blank=True)
     creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name="creator")
-    students = models.ManyToManyField(User, related_name="students")
 
     def __str__(self):
         return self.title
@@ -28,11 +27,30 @@ class Card(models.Model):
         return self.question
 
 
+class StudySet(models.Model):
+    student = models.ForeignKey(User, on_delete=models.CASCADE, related_name="student")
+
+
+
+class StudentDeck(models.Model):
+    studyset = models.ForeignKey(StudySet, on_delete=models.CASCADE, related_name="studyset")
+    student = models.ForeignKey(User, on_delete=models.CASCADE)
+    deck = models.ForeignKey(Deck, on_delete=models.CASCADE)
+
+
 class LeitnerBox(models.Model):
-    title = models.CharField(max_length=200)
-    proficiency_level = models.SmallIntegerField()
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    cards = models.ManyToManyField(Card)
+    frequency = models.SmallIntegerField()
 
     def __str__(self):
-        return self.title
+        return str(self.frequency)
+
+
+class ScoreBoard(models.Model):
+    student = models.ForeignKey(StudySet, on_delete=models.CASCADE)
+    card = models.ForeignKey(Card, on_delete=models.CASCADE)
+    box = models.ForeignKey(LeitnerBox, on_delete=models.CASCADE)
+    updated = models.DateField()
+    leitner_date = models.DateField()
+
+    def __str__(self):
+        return str(self.card)

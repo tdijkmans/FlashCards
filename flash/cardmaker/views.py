@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from cardmaker.models import Card, Deck
+from cardmaker.models import Card, Deck, StudySet, StudentDeck
 from cardmaker.forms import CardForm, DeckForm, CardFormSet
 from django.shortcuts import redirect
 
@@ -72,9 +72,30 @@ def rehearse_deck(request, deck_id):
 
     return render(request, 'rehearse_deck.html', context)
 
-def leitner_deck(request, deck_id):
+def save_for_study(request, deck_id):
+    user = request.user
     deck = Deck.objects.get(pk=deck_id)
-    c_list = Card.objects.filter(deck_id=deck)
-    context = {'list_of_cards' : c_list}
+    studyset, created = StudySet.objects.get_or_create(student=user)
+    if not StudentDeck.objects.filter(deck=deck, student=user):
+        s = StudentDeck()
+        s.studyset = studyset
+        s.student = user
+        s.deck = deck
+        s.save()
+    else:
+        pass
 
-    return render(request, 'leitner_deck.html', context)
+    return redirect('show_my_studyset')
+
+
+def show_my_studyset(request):
+    studyset = StudySet.objects.get(student_id=request.user.id)
+    deck_list = StudentDeck.objects.filter(studyset_id=studyset.id)
+    context = {'studyset':studyset, 'deck_list': deck_list}
+    return render(request, 'my_studyset.html', context)
+
+
+def remove_from_studyset(request, studentdeck_id):
+        deck_to_remove = StudentDeck.objects.get(id=studentdeck_id)
+        deck_to_remove.delete()
+        return redirect('show_my_studyset')

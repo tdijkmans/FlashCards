@@ -51,6 +51,9 @@
             <li>
 
               {% if user.is_authenticated %}
+                <li class="nav-item active">
+                  <a class="nav-link" href="/studyset/">My study set</a>
+                </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
                     {{ user.username }}
