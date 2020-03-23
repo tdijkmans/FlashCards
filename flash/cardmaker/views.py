@@ -72,6 +72,7 @@ def rehearse_deck(request, deck_id):
 
     return render(request, 'rehearse_deck.html', context)
 
+
 def save_for_study(request, deck_id):
     user = request.user
     deck = Deck.objects.get(pk=deck_id)
@@ -99,3 +100,11 @@ def remove_from_studyset(request, studentdeck_id):
         deck_to_remove = StudentDeck.objects.get(id=studentdeck_id)
         deck_to_remove.delete()
         return redirect('show_my_studyset')
+
+
+def leitner(request, deck_id):
+    deck = Deck.objects.get(pk=deck_id)
+    c_list = Card.objects.filter(deck_id=deck)
+    context = {'list_of_cards' : c_list}
+
+    return render(request, 'leitner_deck.html', context)

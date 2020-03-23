@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
-from cardmaker.views import create_cards
+from cardmaker.views import show_all_decks
 
 # Create your views here.
 def signup(request):
@@ -15,7 +15,7 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('create_cards')
+            return redirect('show_all_decks')
     else:
         form = UserCreationForm()
     return render(request, 'signup.html', {'form': form})

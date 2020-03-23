@@ -18,5 +18,6 @@ urlpatterns = [
     path('deck/save/<int:deck_id>/', views.save_for_study, name="save_for_study"),
     path('studyset/', views.show_my_studyset, name='show_my_studyset'),
     path('studyset/remove/<int:studentdeck_id>/',views.remove_from_studyset, name= 'remove_from_studyset'),
+    path('deck/leitner/<int:deck_id>', views.leitner, name='leitner')
 
 ]

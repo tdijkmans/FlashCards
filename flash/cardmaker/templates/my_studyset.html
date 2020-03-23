@@ -10,11 +10,14 @@
         <p class="lead"></p>
       </div>
 
-      <ul class="list-group">
+      <ul class="list-group-flush">
       {% for d in deck_list %}
-        <li class="list-group-item">{{d.deck.title}}
-          <a href="/studyset/remove/{{d.id}}/">Delete</a>
-
+        <li class="list-group-item d-flex p-2">{{d.deck.title}} {{d.deck.card_set.all|length}}
+          <small class="text-muted ml-auto p-2">
+           <a href="/deck/leitner/{{d.deck.id}}">Leitner</a>
+          · <a href="/deck/rehearse/{{d.deck.id}}">Rehearse</a>
+          · <a href="/studyset/remove/{{d.id}}/">Remove</a>
+          </small>
         </li>
       {% endfor %}
       </ul>
