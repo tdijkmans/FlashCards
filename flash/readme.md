@@ -6,7 +6,7 @@ FlashDisco! is an app for making an rehearsing flashcards. Flashcards are cards 
 
 ## App demo
 
-! [Demo](https://github.com/tdijkmans/FlashCards/tree/master/flash/readme-assets/Flashcards.gif)
+![Demo](https://github.com/tdijkmans/FlashCards/tree/master/flash/readme-assets/Flashcards.gif)
 
 ## Used technologies and concepts
 
