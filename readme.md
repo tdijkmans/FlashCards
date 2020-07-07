@@ -1,4 +1,4 @@
-#### FlashDisco! | A flascard app
+# 🎓 FlashDisco! | A flashcard app
 
 ## What this app is about
 
