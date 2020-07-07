@@ -18,11 +18,11 @@ FlashDisco! is an app for making an rehearsing flashcards. Flashcards are cards 
 
 This was my first Django project (early 2020) and I challenged myself to learn app building by making a 'minimum viable product' for flashcards. This entailed:
 
-- Defining models
+- [Defining models](https://github.com/tdijkmans/FlashCards/blob/master/flash/cardmaker/models.py)
 - Defining model relationships
-- Designing UI that execute CRUD operations to the SQLite DB
-- Coding a UI using that serves the user in using flashcards
-- Learning and practicing , Bootstrap, HTML, CSS and Javascript along the way
+- [Coding functions to execute CRUD operations on the SQLite DB](https://github.com/tdijkmans/FlashCards/blob/master/flash/cardmaker/views.py)
+- [Coding a UI using that serves the user in using flashcards](https://github.com/tdijkmans/FlashCards/blob/master/flash/cardmaker/templates/rehearse_deck.html)
+- [Exploring and practicing , Bootstrap, HTML, CSS and Javascript while doing the above](https://github.com/tdijkmans/FlashCards/blob/master/flash/static/js/rehearse.js)
 
 ## User Stories
 
