@@ -1,0 +1,5 @@
+myFlashVenv
+bin
+lib
+*.pyc
+*.pyo
